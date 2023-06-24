@@ -21,11 +21,11 @@ export const LoginPage = () => {
     
         <section className="bg-[#222222] w-[100%] min-h-screen flex flex-col justify-center
         items-center">
-          <form id="form1" onSubmit={onSubmitLogin} className="py-6 w-[90%] md:w-[38%] lg:[30%] bg-[#141414] rounded-lg 
+          <form id="form1" onSubmit={onSubmitLogin} className="py-6 w-[90%] md:w-[48%] xl:w-[35%] bg-[#141414] rounded-lg 
           shadow-md flex flex-col justify-center items-center gap-3">
 
             <div className="flex w-[90%] justify-center gap-1 items-center">
-                <h1 className="font-rubik drop-shadow-lg text-white text-6xl font-bold after:content-['App'] after:text-[#19CC39]">Chat</h1> 
+                <h1 className="font-rubik drop-shadow-lg text-white text-5xl sm:text-6xl md:text-5xl lg:text-6xl font-bold after:content-['App'] after:text-[#19CC39]">Chat</h1> 
                 <img src={logo2} className="w-[20%] drop-shadow-2xl" alt="" />   
             </div> 
 

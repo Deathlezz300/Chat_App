@@ -5,10 +5,9 @@ import { RegisterPage } from '../Auth/RegisterPage'
 export const ChatRoutes = () => {
   return (
     <Routes>
-
         <Route path='login' element={<LoginPage/>}/>
         <Route path='register' element={<RegisterPage/>}/>
-        <Route path='/*' element={<Navigate to='/login'/>}/>
+        {/* <Route path='/*' element={<Navigate to='/login'/>}/> */}
     </Routes>
   )
 }

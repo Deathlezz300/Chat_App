@@ -8,6 +8,14 @@ export default {
     extend: {
       fontFamily:{
         'rubik':['Rubik']
+      },
+      animation:{
+        shine:'shine 1s'
+      },
+      keyframes:{
+        shine:{
+          "100%":{left:"125%"},
+        }
       }
     },
   },
