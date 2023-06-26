@@ -6,7 +6,7 @@ export const AppRoutes = () => {
     <Routes>
 
         <Route path='chats' element={<ChatsPage/>}/>
-        {/* <Route path='/*' element={<Navigate to='/chats'/>}/> */}
+        <Route path='/*' element={<Navigate to='/chats'/>}/>
     </Routes>
   )
 }

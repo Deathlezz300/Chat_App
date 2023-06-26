@@ -10,14 +10,14 @@ export const ChatBox = () => {
             <button type='button' onClick={EsconderChatBox}>
               <img src={regresar} className='w-[30px]' alt="" />
             </button>
-            <img src={logo} className='w-[10%] lg:w-[5%]' alt="" />
+            <img src={logo} className='w-[10%] sm:w-[6%] lg:w-[5%]' alt="" />
             <h2 className='text-white font-rubik font-medium'>Alejandro</h2>
         </div>
         <div className='bg-gray-200 h-[75%]'>
         </div>
-        <div className='w-[100%] flex justify-center gap-3 items-center h-[14%]'>
-          <input type="text" placeholder='Su mensaje aqui' className='font-rubik font-semibold text-black w-[84%] py-2 rounded-lg
-          indent-2 shadow-md outline-none lg:w-[90%]' />
+        <div className='w-[100%] flex justify-center gap-1 sm:gap-3 items-center h-[14%]'>
+          <input type="text" placeholder='Su mensaje aqui' className='font-rubik font-semibold text-black w-[82%] py-2 rounded-lg
+          indent-2 shadow-md outline-none md:w-[88%]' />
           <img src={enviar} className='w-[32px] cursor-pointer' alt="" />
         </div>
     </div>

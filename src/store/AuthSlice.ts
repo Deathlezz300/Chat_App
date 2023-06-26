@@ -1,17 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const AuthSlice = createSlice({
-    name: 'Auth',
+    name: 'auth',
     initialState: {
-     counter: 10
+      status:'not-authenticated',
+      uid:'',
+      name:''
     },
     reducers: {
-         increment: (state, /* action */ ) => {
-            state.counter += 1;
+         SetUser:(state,{payload})=>{
+            state.uid=payload.uid;
+            state.name=payload.name;
+            state.status='authenticated';
          },
+         SetLoading:(state)=>{
+            state.status='loading';
+         }
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { increment } = AuthSlice.actions;
+export const { SetUser,SetLoading } = AuthSlice.actions;

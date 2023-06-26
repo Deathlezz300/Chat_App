@@ -1,4 +1,5 @@
 import logo2 from '../assets/Images/logo.webp'
+import { useAuthStore } from '../Hooks/useAuthStore';
 import { useForm } from '../Hooks/useForm';
 import {FormEvent} from 'react';
 import {Link} from 'react-router-dom';
@@ -11,12 +12,13 @@ const initialState={
 
 export const RegisterPage = () => {
 
-
+    const {onCreateUser}=useAuthStore();
 
     const {email,password,name,onInputChange}=useForm(initialState);
 
     const onSubmitRegister=(evento:FormEvent<HTMLFormElement>)=>{
-         evento.preventDefault();     
+         evento.preventDefault();
+         onCreateUser(email,password,name);     
     }
  
    return (
@@ -39,7 +41,7 @@ export const RegisterPage = () => {
 
              <div className='input-group'>
                  <input required className='input-form font-rubik text-white font-medium' type="email" name='email' placeholder=' ' onChange={onInputChange} value={email} />
-                 <label className='label-input font-rubik'>Usuario</label>
+                 <label className='label-input font-rubik'>Correo</label>
              </div>
              <div className='input-group'>
                  <input required className='input-form font-rubik text-white font-medium' type="password" name='password' placeholder=' ' onChange={onInputChange} value={password} />

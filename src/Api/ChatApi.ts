@@ -1,7 +1,7 @@
 import axios,{AxiosRequestHeaders} from 'axios';
 
 const ChatApi=axios.create({
-    baseURL:'https://newsapi.org/v2/',
+    baseURL:'http://localhost:8000/api',
 });
 
 //Agregar token al header
