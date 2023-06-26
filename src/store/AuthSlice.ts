@@ -15,10 +15,16 @@ export const AuthSlice = createSlice({
          },
          SetLoading:(state)=>{
             state.status='loading';
+         },
+         clearAuthLogOut:(state)=>{
+            state.uid='';
+            state.name='';
+            state.status='not-authenticated';
+            localStorage.removeItem('x-token');
          }
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { SetUser,SetLoading } = AuthSlice.actions;
+export const { SetUser,SetLoading,clearAuthLogOut } = AuthSlice.actions;

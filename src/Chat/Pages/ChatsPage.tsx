@@ -1,3 +1,4 @@
+import { useAuthStore } from "../../Hooks/useAuthStore"
 import { useChatStore } from "../../Hooks/useChatStore"
 import { ChatBox } from "../components/ChatBox"
 import { ChatUserBox } from "../components/ChatUserBox"
@@ -7,6 +8,8 @@ import { useEffect } from "react"
 export const ChatsPage = () => {
 
   const {chats,startLoadingChats,status}=useChatStore();
+
+  const {name}=useAuthStore();
 
   useEffect(()=>{
     startLoadingChats();
@@ -18,7 +21,7 @@ export const ChatsPage = () => {
 
   return (
     <section className="w-[100%] flex flex-col justify-center items-center bg-[#222222]">
-    <Header/>
+    <Header nombre={name}/>
     <section className="flex justify-center h-auto items-center w-[100%] relative overflow-x-hidden">
         <div className="w-[100%] md:w-[40%] overflow-y-scroll" style={{height:'calc(100vh - 120px)'}}>
             {

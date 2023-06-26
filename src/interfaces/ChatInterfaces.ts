@@ -1,7 +1,9 @@
 export interface mensaje{
     _id:string,
     mensaje:string,
-    fecha:string
+    fecha:string,
+    userOwner:string,
+    userTo:string
 }
 
 export interface userMessages{
