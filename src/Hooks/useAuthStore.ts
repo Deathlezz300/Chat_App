@@ -1,7 +1,7 @@
 import {useSelector } from "react-redux/es/hooks/useSelector"
 import { RootState } from "../store/store"
 import ChatApi from "../Api/ChatApi";
-import { SetLoading, SetUser } from "../store/AuthSlice";
+import { SetLoading, SetUser, clearAuthLogOut } from "../store/AuthSlice";
 import { useDispatch } from "react-redux";
 
 interface AuthHook{
@@ -31,7 +31,8 @@ export const useAuthStore=():AuthHook=>{
             }
 
         }catch(error){
-            console.log(error);
+            //console.log(error);
+            dispatch(clearAuthLogOut());
         }
 
     }
@@ -48,7 +49,8 @@ export const useAuthStore=():AuthHook=>{
             }
 
         }catch(error){
-            console.log(error);
+            //console.log(error);
+            dispatch(clearAuthLogOut());
         }
     }
 
@@ -56,16 +58,20 @@ export const useAuthStore=():AuthHook=>{
         dispatch(SetLoading());
         try{
 
-            const resp=await ChatApi.get('/renovar');
-            const data=resp.data;
-
-            if(data.ok){
-                localStorage.setItem('x-token',data.token);
-                dispatch(SetUser({uid:data.uid,name:data.name}))
-            }
+             if(localStorage.getItem('x-token')){
+                const resp=await ChatApi.get('/renovar');
+                const data=resp.data;
+                if(data.ok){
+                    localStorage.setItem('x-token',data.token);
+                    dispatch(SetUser({uid:data.uid,name:data.name}))
+                }
+             }else{
+                dispatch(clearAuthLogOut());
+             }
 
         }catch(error){
-            console.log(error);
+            //console.log(error);
+            dispatch(clearAuthLogOut());
         }
     }
 

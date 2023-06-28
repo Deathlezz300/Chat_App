@@ -6,7 +6,8 @@ export const ChatSlice = createSlice({
     initialState: {
       status:'not-loading',
       chats:[] as User[],
-      activeChat:{} as userMessages
+      activeChat:{} as userMessages,
+      ultimoMensaje:{} as mensaje
     },
     reducers: {
          setLoading:(state)=>{
@@ -18,20 +19,32 @@ export const ChatSlice = createSlice({
          },
          setActiveChat:(state,{payload})=>{
             state.activeChat=payload;
+            state.chats.forEach(chat=>{
+               if(chat.user._id==payload._id){
+                  chat.user.pendientes=false;
+               }
+            });
          },
          onNewAddMessage:(state,{payload}:{payload:mensaje})=>{
-            state.activeChat.messages.push(payload);
+            state.ultimoMensaje=payload;
             state.chats.forEach(me=>{
                if(me.user._id==payload.userTo ||  me.user._id==payload.userOwner){
                   me.user.messages.push(payload);
+                  if(me.user._id!=state.activeChat._id){
+                     me.user.pendientes=true;
+                     state.activeChat.pendientes=true;
+                  }else{
+                     state.activeChat.messages.push(payload);
+                  }
                }
             });
          },
          clearDataChatLogOut:(state)=>{
             state.chats=[] as User[];
             state.activeChat={} as userMessages;
+            state.ultimoMensaje={} as mensaje;
             state.status='not-loading';
-         }
+         },
     }
 });
 

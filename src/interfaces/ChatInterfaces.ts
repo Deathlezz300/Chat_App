@@ -10,7 +10,8 @@ export interface userMessages{
     _id:string,
     name:string,
     messages:mensaje[],
-    urlImage?:string
+    urlImage?:string,
+    pendientes?:boolean
 }
 
 export interface User{

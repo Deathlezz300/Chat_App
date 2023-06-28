@@ -21,3 +21,13 @@ export const EsconderChatBox=()=>{
         persona?.classList.remove('hidden');
     }
 }
+
+export const AlinearChat=()=>{
+    const chatbox=document.getElementById("chatbox") as HTMLElement;
+    if(chatbox){
+        console.log(chatbox.scrollTop)
+        console.log(chatbox.scrollHeight)
+        console.log(chatbox.clientHeight);
+        chatbox.scrollTop=chatbox.clientHeight;
+    }
+}

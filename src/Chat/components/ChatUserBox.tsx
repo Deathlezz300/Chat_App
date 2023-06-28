@@ -10,12 +10,14 @@ interface props{
   id:string,
   nombre:string,
   mensajes:mensaje[],
+  pendientes:boolean | undefined
 }
 
 
-export const ChatUserBox = ({id,nombre,mensajes}:props) => {
+export const ChatUserBox = ({id,nombre,mensajes,pendientes}:props) => {
 
   const dispatch=useDispatch();
+
 
   const imagen1=useMemo(()=>RegresarImagen(),[]);
 
@@ -31,14 +33,17 @@ export const ChatUserBox = ({id,nombre,mensajes}:props) => {
   };
 
   return (
-    <div onClick={onClickBox} className="relative group w-[100%] flex gap-4 py-3 bg-[#373737] border-t-[1px] 
-    border-gray-300 cursor-pointer shadow-md transition-all">
-        <img src={imagen1} className='object-cover max-h-[60px] ml-2 rounded-lg w-[14%] md:w-[22%] lg:w-[10%]' alt="" />
-        <div className='h-auto flex flex-col md:w-[66%] w-[81%] justify-center'>
-            <h2 className='text-[#19CC39] font-rubik font-bold'>{nombre}</h2>
-            <p className='text-white font-rubik'>{mensajes?.length>0 ? mensajes[0].mensaje : 'No hay mensajes'}</p>
+    <div onClick={onClickBox} className="relative group w-[100%] flex justify-between gap-4 py-3 bg-[#373737] border-t-[1px] 
+    border-gray-300 cursor-pointer shadow-md transition-all items-center">
+        <div className='flex w-[100%] gap-2'>
+          <img src={imagen1} className='object-cover max-h-[150px] ml-2 rounded-lg w-[14%] md:w-[22%] lg:w-[10%]' alt="" />
+          <div className='flex flex-col h-auto md:w-[66%] w-[81%] justify-center'>
+              <h2 className='text-[#19CC39] font-rubik font-bold'>{nombre}</h2>
+              <p className='text-white font-rubik'>{mensajes?.length>0 ? mensajes[mensajes.length-1].mensaje : 'No hay mensajes'}</p>
+          </div>
         </div>
         <div className="absolute top-0 h-full w-full z-5 opacity-0 bg-gray-400 transition-all group-hover:opacity-10" />
+        <div className={`bg-[#19CC39] w-[13px] h-[13px] rounded-full mr-3 ${pendientes ? 'block' : 'hidden'}`}></div>
     </div>
   )
 }
