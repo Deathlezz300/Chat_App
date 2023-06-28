@@ -33,6 +33,7 @@ export const ChatBox = ({enviar1}:props) => {
   }
 
   useEffect(()=>{
+    AlinearChat();
     onResetForm();
   },[activeChat])
 
@@ -45,7 +46,7 @@ export const ChatBox = ({enviar1}:props) => {
             <img src={activeChat.urlImage} className='w-[10%] sm:w-[6%] lg:w-[5%] rounded-lg' alt="" />
             <h2 className='text-white font-rubik font-medium'>{activeChat.name}</h2>
         </div>
-        <div className='bg-gray-200 h-[75%] flex flex-col gap-1 overflow-y-scroll py-2'>
+        <div id='divScroll' className='bg-gray-200 h-[75%] flex flex-col gap-1 overflow-y-scroll py-2'>
           {
             activeChat.messages?.map(me=>{
               return <Message key={me._id} mensaje={me.mensaje} hora={me.fecha} userOwner={me.userOwner} uid={uid}/>

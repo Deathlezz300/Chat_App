@@ -46,6 +46,15 @@
     z-index: -1;
 }
 
+::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #19CC39; /* Color del thumb (la parte desplazable del scrollbar) */
+    border-radius: 10px; /* Radio del borde del thumb */
+  }
+
 
 /* body {
     background: linear-gradient(to bottom, green 60%, green 60%, blue 30%, blue 100%);
