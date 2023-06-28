@@ -1,3 +1,5 @@
+import { AxiosError } from "axios"
+
 export interface mensaje{
     _id:string,
     mensaje:string,
@@ -22,4 +24,10 @@ export interface PeticionMessages{
     ok?:boolean,
     MensajesFull:User[]
 }
+
+export type customAxiosError= {
+    ok:boolean,
+    message:string,
+}
+
 

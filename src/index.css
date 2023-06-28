@@ -55,6 +55,37 @@
     border-radius: 10px; /* Radio del borde del thumb */
   }
 
+  .loader {
+    width: 80px;
+    height: 80px;
+    border: 7px solid #19CC39;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        transition: background-color 5000s ease-in-out 0s;
+        color: white;
+    }
+
+    input:-webkit-autofill{
+        -webkit-text-fill-color: white !important;
+    }
 
 /* body {
     background: linear-gradient(to bottom, green 60%, green 60%, blue 30%, blue 100%);

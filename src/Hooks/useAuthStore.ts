@@ -1,8 +1,10 @@
 import {useSelector } from "react-redux/es/hooks/useSelector"
 import { RootState } from "../store/store"
 import ChatApi from "../Api/ChatApi";
-import { SetLoading, SetUser, clearAuthLogOut } from "../store/AuthSlice";
+import { SetLoading, SetUser, clearAuthLogOut, clearErrorMessage, setErrorMessage, setLoadingInit } from "../store/AuthSlice";
 import { useDispatch } from "react-redux";
+import { AxiosError } from "axios";
+import { customAxiosError } from "../interfaces/ChatInterfaces";
 
 interface AuthHook{
     status:string,
@@ -10,12 +12,15 @@ interface AuthHook{
     name:string,
     onLogin:(email:string,password:string)=>void,
     onCreateUser:(email:string,password:string,name:string)=>void,
-    StartAuthenticated:()=>void
+    StartAuthenticated:()=>void,
+    errorMessage:string | null,
+    onClearErrorMessage:()=>void,
+    onSetErrorMessage:(error:string)=>void
 }
 
 export const useAuthStore=():AuthHook=>{
 
-    const {status,uid,name}=useSelector((state:RootState)=>state.auth);
+    const {status,uid,name,errorMessage}=useSelector((state:RootState)=>state.auth);
 
     const dispatch=useDispatch();
 
@@ -31,7 +36,9 @@ export const useAuthStore=():AuthHook=>{
             }
 
         }catch(error){
-            //console.log(error);
+            const axiosError=error as AxiosError;
+            const data=axiosError.response?.data as customAxiosError;
+            dispatch(setErrorMessage(data.message));
             dispatch(clearAuthLogOut());
         }
 
@@ -49,13 +56,16 @@ export const useAuthStore=():AuthHook=>{
             }
 
         }catch(error){
+            const axiosError=error as AxiosError;
+            const data=axiosError.response?.data as customAxiosError;
+            dispatch(setErrorMessage(data.message));
             //console.log(error);
             dispatch(clearAuthLogOut());
         }
     }
 
     const StartAuthenticated=async()=>{
-        dispatch(SetLoading());
+        dispatch(setLoadingInit());
         try{
 
              if(localStorage.getItem('x-token')){
@@ -70,9 +80,16 @@ export const useAuthStore=():AuthHook=>{
              }
 
         }catch(error){
-            //console.log(error);
             dispatch(clearAuthLogOut());
         }
+    }
+
+    const onClearErrorMessage=()=>{
+        dispatch(clearErrorMessage());
+    }
+
+    const onSetErrorMessage=(error:string)=>{
+        dispatch(setErrorMessage(error));
     }
 
     return{
@@ -81,7 +98,10 @@ export const useAuthStore=():AuthHook=>{
         name,
         onLogin,
         onCreateUser,
-        StartAuthenticated
+        StartAuthenticated,
+        errorMessage,
+        onClearErrorMessage,
+        onSetErrorMessage
     }
 
 }

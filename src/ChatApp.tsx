@@ -3,6 +3,7 @@ import { useAuthStore } from "./Hooks/useAuthStore"
 import { ChatRoutes } from "./Router/ChatRoutes"
 import { useEffect } from "react"
 import {Routes,Route, Navigate} from 'react-router-dom'
+import { Loader } from "./Chat/components/Loader"
 
 export const ChatApp = () => {
 
@@ -12,15 +13,20 @@ export const ChatApp = () => {
     StartAuthenticated();
   },[])
 
-  if(status==='loading'){
-    return <h2>Cargando...</h2>
+  if(status==='loadingInit'){
+    return <Loader/>
   }
 
   return (
+    <>
+    {
+      status==='loading' ? <Loader/> :''
+    }
     <Routes>
           {
             status==='authenticated' ?  <Route path="/*" element={<AppRoutes/>}/> : <Route path="/*" element={<ChatRoutes/>}/>
           }      
     </Routes>
+    </>
   )
 }

@@ -6,6 +6,7 @@ import { Header } from "../components/Header"
 import { useEffect } from "react"
 import io from 'socket.io-client';
 import {useMemo} from 'react'
+import { Loader } from "../components/Loader"
 
 export const ChatsPage = () => {
 
@@ -46,7 +47,7 @@ export const ChatsPage = () => {
 
 
   if(status==='loading'){
-    return <h1>No</h1>
+    return <Loader/>
   }
 
   return (
