@@ -6,7 +6,6 @@ import { useAuthStore } from '../../Hooks/useAuthStore'
 import { Message } from './Message'
 import { useForm } from '../../Hooks/useForm'
 import {useEffect,FormEvent} from 'react'
-import { mensaje } from '../../interfaces/ChatInterfaces'
 import {Socket} from 'socket.io-client'
 
 const initalState={

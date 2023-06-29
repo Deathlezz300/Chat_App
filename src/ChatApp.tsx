@@ -2,7 +2,7 @@ import { AppRoutes } from "./Chat/Routes/AppRoutes"
 import { useAuthStore } from "./Hooks/useAuthStore"
 import { ChatRoutes } from "./Router/ChatRoutes"
 import { useEffect } from "react"
-import {Routes,Route, Navigate} from 'react-router-dom'
+import {Routes,Route} from 'react-router-dom'
 import { Loader } from "./Chat/components/Loader"
 
 export const ChatApp = () => {

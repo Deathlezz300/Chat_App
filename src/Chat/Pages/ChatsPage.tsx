@@ -15,7 +15,7 @@ export const ChatsPage = () => {
   const {name,uid}=useAuthStore();
 
   const socket=useMemo(()=>{
-      return io('http://localhost:8000',{
+      return io('https://chatappbackend.up.railway.app',{
           extraHeaders:{
             'userid':uid
           }     
@@ -43,11 +43,11 @@ export const ChatsPage = () => {
       socket.off('nuevo_mensaje');
     }
   
-  },[]);
+  },[])
 
 
   if(status==='loading'){
-    return <Loader/>
+    return <Loader/>;
   }
 
   return (
