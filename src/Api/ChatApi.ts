@@ -1,7 +1,7 @@
 import axios,{AxiosRequestHeaders} from 'axios';
 
 const ChatApi=axios.create({
-    baseURL:'https://chatappbackend.up.railway.app/api',
+    baseURL:'https://chat-app-oe4p.onrender.com/api',
 });
 
 //Agregar token al header

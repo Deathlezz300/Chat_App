@@ -55,7 +55,7 @@ export const ChatBox = ({enviar1}:props) => {
         <form onSubmit={onSendMessage} id='form-mes' className='w-[100%] flex justify-center gap-1 sm:gap-3 items-center h-[14%]'>
           <input type="text" placeholder='Su mensaje aqui' className='font-rubik font-semibold text-black w-[82%] py-2 rounded-lg
           indent-2 shadow-md outline-none md:w-[88%]' name='mensaje' value={mensaje} onChange={onInputChange} />
-          <button className='border-none' type='button' form='form-mes'>
+          <button className='border-none' type='submit' form='form-mes'>
             <img  src={enviar} className='w-[32px] cursor-pointer' alt="" />
           </button>
         </form>
